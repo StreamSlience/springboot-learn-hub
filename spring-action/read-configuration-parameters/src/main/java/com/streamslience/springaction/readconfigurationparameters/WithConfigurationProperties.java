@@ -4,7 +4,6 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Map;
 
@@ -22,18 +21,12 @@ public class WithConfigurationProperties {
     /**
      * 基本类型、String类型 变量
      */
-    @NotEmpty
     private String name;
 
     /**
      * 引用变量
      */
     private Info info;
-
-    /**
-     * 数组
-     */
-    private String[] post;
 
     /**
      * 元素为基本类型或String类型的集合

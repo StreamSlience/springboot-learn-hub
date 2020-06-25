@@ -40,8 +40,6 @@ public class ReadConfigurationParametersApplicationTests {
 
         System.out.println(withConfigurationProperties.getInfo());
 
-        Arrays.stream(withConfigurationProperties.getPost()).forEach(System.out::println);
-
         withConfigurationProperties.getArea().forEach(System.out::println);
 
         withConfigurationProperties.getBooks().forEach(System.out::println);

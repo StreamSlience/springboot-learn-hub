@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 使用{@code @ConfigurationProperties} 和 {@code @Bean} 读取配置文件参数
@@ -17,7 +18,7 @@ import java.util.List;
  * @date 2020-06-25 23:52
  */
 @Configuration
-@PropertySource(value = "classpath:application.yml")
+@PropertySource(value = "classpath:bean.properties", encoding = "utf-8")
 public class WithBean {
 
     @Bean
@@ -52,5 +53,19 @@ public class WithBean {
     @EqualsAndHashCode(callSuper = true)
     static class Plane extends Car {
 
+        private Map<String,Integer> food;
+
+        private Person driver;
+
+        private Person[] passenger;
+
+        private Map<String, Person> staff;
+
+        @Data
+        static class Person {
+            private String name;
+            private Integer age;
+            private Integer weight;
+        }
     }
 }

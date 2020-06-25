@@ -1,0 +1,19 @@
+car:
+  name: 宝马
+  weight: ${random.long(100)}
+  price: ${random.long}
+  id: ${random.uuid}
+  rank:
+    - 尊享版
+    - 豪华版
+    - 旗舰版
+
+plane:
+  name: 波音747
+  weight: ${random.long(100)}
+  price: ${random.long}
+  id: ${random.uuid}
+  rank:
+    - 尊享版
+    - 豪华版
+    - 旗舰版
