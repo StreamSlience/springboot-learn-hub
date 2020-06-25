@@ -1,6 +1,6 @@
-package com.streamslience.springdatajpa.dynamicdatasource.secondary.dao;
+package com.streamslience.springdatajpa.dynamicdatasource.dao.secondary;
 
-import com.streamslience.springdatajpa.dynamicdatasource.secondary.entity.Vega;
+import com.streamslience.springdatajpa.dynamicdatasource.entity.secondary.Vega;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

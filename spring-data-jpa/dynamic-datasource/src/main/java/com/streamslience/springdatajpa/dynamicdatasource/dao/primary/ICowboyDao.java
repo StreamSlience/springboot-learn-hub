@@ -1,6 +1,6 @@
-package com.streamslience.springdatajpa.dynamicdatasource.primary.dao;
+package com.streamslience.springdatajpa.dynamicdatasource.dao.primary;
 
-import com.streamslience.springdatajpa.dynamicdatasource.primary.entity.Cowboy;
+import com.streamslience.springdatajpa.dynamicdatasource.entity.primary.Cowboy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

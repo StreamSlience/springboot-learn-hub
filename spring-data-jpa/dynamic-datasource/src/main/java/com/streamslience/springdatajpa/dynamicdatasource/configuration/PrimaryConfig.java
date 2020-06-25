@@ -22,15 +22,17 @@ import java.util.Objects;
 
 /**
  * <br><strong>{@code @EnableJpaRepositories}说明:</strong>
- * <br><strong>entityManagerFactoryRef:</strong>???
- * <br><strong>transactionManagerRef:</strong>???
- * <br><strong>basePackages:</strong>持久层接口所在的路径。
+ * <br><strong>entityManagerFactoryRef:</strong>
+ * 配置EntityManagerFactory bean定义的名称，该定义用于创建通过此批注发现的存储库。默认为entityManagerFactory。
+ * <br><strong>transactionManagerRef:</strong>
+ * 配置PlatformTransactionManager bean定义的名称，该定义用于创建通过此批注发现的存储库。默认为transactionManager。
+ * <br><strong>basePackages:</strong>
+ * 持久层接口所在的路径。
  *
  * <p>
  * <br><strong>{@code @Qualifier}说明:</strong>
- * 此注释可以在字段或参数上用作限定符自动装配时选择指定名称的bean。它也可以用于注释其他自定义注释，这些注释随后可以用作限定符。
- *
- * <p>
+ * 此注释可以在字段或参数上用作限定符自动装配时选择指定名称的bean。
+ * 它也可以用于注释其他自定义注释，这些注释随后可以用作限定符。
  *
  * @author StreamSlience
  * @date 2020-06-24 16:06
@@ -40,7 +42,7 @@ import java.util.Objects;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactoryPrimary",
         transactionManagerRef = "transactionManagerPrimary",
-        basePackages = {"com.streamslience.springdatajpa.dynamicdatasource.primary.dao"})
+        basePackages = {"com.streamslience.springdatajpa.dynamicdatasource.dao.primary"})
 public class PrimaryConfig {
 
     private final DataSource primaryDataSource;
@@ -63,7 +65,6 @@ public class PrimaryConfig {
     @Primary
     @Bean
     public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
-        //return entityManagerFactoryPrimary(builder).getObject().createEntityManager();
         return Objects.requireNonNull(entityManagerFactoryPrimary(builder).getObject()).createEntityManager();
     }
 
@@ -72,7 +73,7 @@ public class PrimaryConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary(EntityManagerFactoryBuilder builder) {
         return builder
                 .dataSource(primaryDataSource)
-                .packages("com.streamslience.springdatajpa.dynamicdatasource.primary.entity")
+                .packages("com.streamslience.springdatajpa.dynamicdatasource.entity.primary")
                 .persistenceUnit("primaryPersistenceUnit")
                 .properties(getVendorProperties())
                 .build();
@@ -81,7 +82,7 @@ public class PrimaryConfig {
     @Primary
     @Bean(name = "transactionManagerPrimary")
     public PlatformTransactionManager transactionManagerPrimary(EntityManagerFactoryBuilder builder) {
-        return new JpaTransactionManager(entityManagerFactoryPrimary(builder).getObject());
+        return new JpaTransactionManager(Objects.requireNonNull(entityManagerFactoryPrimary(builder).getObject()));
     }
 
 }

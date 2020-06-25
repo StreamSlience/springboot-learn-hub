@@ -3,32 +3,25 @@ server:
 
 spring:
   jpa:
-    show-sql: true # \u65E5\u5FD7\u6253\u5370SQL
+    show-sql: true
+    database: mysql
+    generate-ddl: true
+    open-in-view: true
     hibernate:
-      ddl-auto: update # DDL\u7B56\u7565,\u751F\u4EA7\u73AF\u5883\u4E0D\u5141\u8BB8\u4F7F\u7528
+      ddl-auto: update
   datasource:
-      hikari:
-        minimum-idle: 10
-        maximum-pool-size: 10
-        auto-commit: true
-        idle-timeout: 12000
-        max-lifetime: 30000
-        connection-timeout: 10000
-        connection-init-sql: SET names utf8mb4
-        connection-test-query: SELECT 1
-        read-only: false
-        pool-name: hikari
-        primary:
-          jdbc-url: jdbc-url:jdbc:mysql://rm-bp1we1k1c02ayr403zo.mysql.rds.aliyuncs.com:3306/learn?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&allowMultiQueries=true&useServerPrepStmts=false&useCompression=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&connectTimeout=2000&autoReconnect=true&useSSL=false
-          username: stream_1996
-          password: Onepiece@1996
-          driver-class-name: com.mysql.cj.jdbc.Driver
-          type: com.zaxxer.hikari.HikariDataSource
-        secondary:
-          jdbc-url: jdbc-url:jdbc:mysql://rm-bp1we1k1c02ayr403zo.mysql.rds.aliyuncs.com:3306/learn_1?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&allowMultiQueries=true&useServerPrepStmts=false&useCompression=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&connectTimeout=2000&autoReconnect=true&useSSL=false
-          username: stream_1996
-          password: Onepiece@1996
-          driver-class-name: com.mysql.cj.jdbc.Driver
-          type: com.zaxxer.hikari.HikariDataSource
+    primary:
+      jdbc-url: jdbc:mysql://rm-bp1we1k1c02ayr403zo.mysql.rds.aliyuncs.com:3306/learn?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&allowMultiQueries=true&useServerPrepStmts=false&useCompression=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&connectTimeout=2000&autoReconnect=true&useSSL=false
+      username: stream_1996
+      password: Onepiece@1996
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+    secondary:
+      jdbc-url: jdbc:mysql://rm-bp1we1k1c02ayr403zo.mysql.rds.aliyuncs.com:3306/learn_1?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&allowMultiQueries=true&useServerPrepStmts=false&useCompression=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&connectTimeout=2000&autoReconnect=true&useSSL=false
+      username: stream_1996
+      password: Onepiece@1996
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+    type: com.zaxxer.hikari.HikariDataSource
 
 

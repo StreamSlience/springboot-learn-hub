@@ -1,7 +1,6 @@
-package com.streamslience.springdatajpa.dynamicdatasource.secondary.entity;
+package com.streamslience.springdatajpa.dynamicdatasource.entity.secondary;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -11,7 +10,6 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@NoArgsConstructor
 @Table(name = "vega")
 public class Vega {
 
@@ -21,4 +19,11 @@ public class Vega {
 
     @Column
     private String name;
+
+    public Vega() {
+    }
+
+    public Vega(String name) {
+        this.name = name;
+    }
 }

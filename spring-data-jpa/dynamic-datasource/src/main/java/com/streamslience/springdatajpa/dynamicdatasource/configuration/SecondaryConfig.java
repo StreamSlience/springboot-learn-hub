@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author StreamSlience
@@ -27,7 +28,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactorySecondary",
         transactionManagerRef = "transactionManagerSecondary",
-        basePackages = {"com.streamslience.springdatajpa.dynamicdatasource.secondary.dao"})
+        basePackages = {"com.streamslience.springdatajpa.dynamicdatasource.dao.secondary"})
 public class SecondaryConfig {
 
     @Autowired
@@ -46,14 +47,14 @@ public class SecondaryConfig {
 
     @Bean(name = "entityManagerSecondary")
     public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
-        return entityManagerFactorySecondary(builder).getObject().createEntityManager();
+        return Objects.requireNonNull(entityManagerFactorySecondary(builder).getObject()).createEntityManager();
     }
 
     @Bean(name = "entityManagerFactorySecondary")
     public LocalContainerEntityManagerFactoryBean entityManagerFactorySecondary(EntityManagerFactoryBuilder builder) {
         return builder
                 .dataSource(secondaryDataSource)
-                .packages("com.streamslience.springdatajpa.dynamicdatasource.secondary.entity")
+                .packages("com.streamslience.springdatajpa.dynamicdatasource.entity.secondary")
                 .persistenceUnit("secondaryPersistenceUnit")
                 .properties(getVendorProperties())
                 .build();
@@ -61,7 +62,7 @@ public class SecondaryConfig {
 
     @Bean(name = "transactionManagerSecondary")
     PlatformTransactionManager transactionManagerSecondary(EntityManagerFactoryBuilder builder) {
-        return new JpaTransactionManager(entityManagerFactorySecondary(builder).getObject());
+        return new JpaTransactionManager(Objects.requireNonNull(entityManagerFactorySecondary(builder).getObject()));
     }
 
 }
