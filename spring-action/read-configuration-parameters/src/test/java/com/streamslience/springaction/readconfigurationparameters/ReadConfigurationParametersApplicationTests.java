@@ -19,7 +19,6 @@ public class ReadConfigurationParametersApplicationTests {
 
     @Autowired
     private WithValue withValue;
-
     @Test
     public void value() {
         System.out.println(withValue);
@@ -27,7 +26,6 @@ public class ReadConfigurationParametersApplicationTests {
 
     @Autowired
     private WithEnvironment withEnvironment;
-
     @Test
     public void environment() {
         Properties properties = withEnvironment.bookProperties();
@@ -36,9 +34,8 @@ public class ReadConfigurationParametersApplicationTests {
 
     @Autowired
     private WithConfigurationProperties withConfigurationProperties;
-
     @Test
-    public void ConfigurationProperties() {
+    public void configurationProperties() {
         System.out.println(withConfigurationProperties.getName());
 
         System.out.println(withConfigurationProperties.getInfo());
@@ -54,5 +51,14 @@ public class ReadConfigurationParametersApplicationTests {
         withConfigurationProperties.getMagazine().forEach((s, magazine) -> System.out.println(s + ":" + magazine));
     }
 
+    @Autowired
+    private WithBean withBean;
+    @Test
+    public void bean(){
+        WithBean.Car car = withBean.getCarBean();
+        System.out.println(car);
 
+        WithBean.Plane plane = withBean.getPlaneBean();
+        System.out.println(plane);
+    }
 }

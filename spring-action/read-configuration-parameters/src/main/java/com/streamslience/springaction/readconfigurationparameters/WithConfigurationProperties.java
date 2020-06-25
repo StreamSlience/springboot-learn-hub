@@ -5,7 +5,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +22,7 @@ public class WithConfigurationProperties {
     /**
      * 基本类型、String类型 变量
      */
+    @NotEmpty
     private String name;
 
     /**
