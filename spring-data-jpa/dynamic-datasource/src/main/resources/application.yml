@@ -22,6 +22,5 @@ spring:
       password: Onepiece@1996
       driver-class-name: com.mysql.cj.jdbc.Driver
       type: com.zaxxer.hikari.HikariDataSource
-    type: com.zaxxer.hikari.HikariDataSource
 
 
