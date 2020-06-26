@@ -14,6 +14,7 @@
     <name>springboot-learn-hub</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
+
     <modules>
         <module>spring-annotation</module>
         <module>spring-data-jpa</module>
