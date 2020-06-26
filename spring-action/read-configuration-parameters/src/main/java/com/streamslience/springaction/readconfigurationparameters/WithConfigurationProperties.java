@@ -11,8 +11,8 @@ import java.util.Map;
  * 使用{@code @ConfigurationProperties} 和 {@code @Configuration}/{@code @Component}同时作用于类读取配置文件参数并注册为bean对象。
  *
  * 当然还有另外一种形式，可以不使用{@code @Configuration}注入bean对象,
- * 而是在启动类中使用{@code @EnableConfigurationProperties}来指定要生成的bean对象
- *
+ * 而是在启动类 或者 应用类 中使用{@code @EnableConfigurationProperties}来指定要生成的bean对象
+ * 注意: 应用类即可以是 控制层类 或者 业务逻辑层类
  * @author StreamSlience
  * @date 2020-06-25 14:35
  */
