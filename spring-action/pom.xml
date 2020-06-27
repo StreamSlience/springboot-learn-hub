@@ -19,6 +19,7 @@
         <module>read-configuration-parameters</module>
         <module>start-animation</module>
         <module>multi-environment-configuration</module>
+        <module>log-configuration-logback</module>
     </modules>
 
     <properties>

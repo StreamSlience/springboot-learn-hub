@@ -1,0 +1,108 @@
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <!--属性文件:在yml/properties文件中找到对应的配置项-->
+    <springProperty scope="context" name="logging.file.path" source="logging.path"/>
+    <springProperty scope="context" name="logging.level"
+                    source="com.streamslience.springaction.logconfigurationlogback"/>
+
+    <!-- 默认的控制台日志输出，一般生产环境都是后台启动，这个没太大作用 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{HH:mm:ss.SSS} %-5level %logger{80} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <!--
+        <appender/>为负责写日志的组件,需要配合<logger/>或<root/>使用,否则相当于定义了缺没有地方输出日志信息。
+        class属性指定appender的类型,可指定的类型如下:
+        1.ConsoleAppender: 把日志添加到控制台
+        路径为 ch.qos.logback.core.ConsoleAppender
+        2.FileAppender: 把日志添加到文件
+        路径为 ch.qos.logback.core.FileAppender
+        3.RollingFileAppender: 滚动记录文件,先将日志记录到指定文件,符合某个条件时将日志记录到其他文件。
+        路径为 ch.qos.logback.core.rolling.RollingFileAppender
+    -->
+    <appender name="FILEOUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--true:日志被追加到文件结尾; false:清空现存日志。默认为true-->
+        <append>true</append>
+
+        <!--
+            <filter>用于为<appender>添加一个或多个过滤器,可以用任意条件对日志进行过滤。
+            执行一个过滤器会返回DENY,NEUTRAL,ACCEPT三个枚举值中的一个,其功能说明如下:
+                1.DENY:日志将立即被抛弃不再经过其他过滤器
+                2.NEUTRAL:有序列表里的下个过滤器过接着处理日志
+                3.ACCEPT:日志会被立即处理，不再经过剩余过滤器
+            class属性指定过滤器类型,可指定的过滤器类型如下:
+                1.ThresholdFilter
+                临界值过滤器,过滤掉低于指定临界值的日志。
+                当日志级别等于或高于临界值时,过滤器返回NEUTRAL; 当日志级别低于临界值时,日志会被拒绝。
+                示例:
+                    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                        <level>INFO</level>
+                    </filter>
+                2.LevelFilter
+                级别过滤器,根据日志界别进行过滤。
+                如果日志级别等于配置级别，过滤器会根据onMath(用于配置符合过滤条件的操作) 和 onMismatch(用于配置不符合过滤条件的操作)接收或拒绝日志。
+                示例:
+                    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                        <level>INFO</level>
+                        <onMatch>ACCEPT</onMatch>
+                        <onMismatch>DENY</onMismatch>
+                    </filter>
+        -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${logging.level}</level>
+        </filter>
+
+        <!--
+            <file/>用于指定日志写入文件名(可以是相对目录 或 绝对目录,如果上级目录不存在会自动创建,没有默认值)
+        -->
+        <file>
+            ${logging.path}/log-configuration-logback/log.log
+        </file>
+
+        <!--
+            <rollingPolicy>用来描述日志滚动策略。该标签只有在<appender>的class属性为RollingFileAppender时才需要配置。
+            注意:该标签也会导致文件的移动和重命名。例如:log.log 文件变为 log.log.2020.06.26
+            class属性指定日志的滚动策略,可选类型如下:
+                1.TimeBasedRollingPolicy:最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。这个下面又包括了两个子标签:<FileNamePattern/>和<MaxHistory/>
+                2.FixedWindowRollingPolicy:根据固定窗口算法重命名文件的滚动策略。
+            下面配置的效果为:每天生成一个日志文件,保留三十天。
+        -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--<FileNamePattern/>:日志文件输出的文件名:即上面提到的移动和重命名文件,按天回滚-->
+            <FileNamePattern>${logging.path}/log-configuration-logback/log.log.%d{yyyy-MM-dd}</FileNamePattern>
+            <!--<MaxHistory/>:日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+
+        <!--
+            <encoder/>用于对输出的日志格式化。
+            干了以下两件事:
+                1.把日志信息转换成字节数组
+                2.把字节数组写入到输出流
+        -->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--
+
+        name属性:用于指定受此logger作用(输出日志)的 某一个包 或 具体的某一个类。
+        level属性:用于设置打印级别(打印级别为:TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF)。
+                 如果没有设置该属性则当前的logger将会继承上级的级别。
+        addtivity属性:用来描述是否向上级logger传递打印信息。默认是true。
+    -->
+    <logger name="com.streamslience.springaction.logconfigurationlogback" level="${logging.level}" additivity="false">
+        <!--用来指定具体的<appender/>-->
+        <appender-ref ref="FILEOUT" />
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="FILEOUT"/>
+<!--        <appender-ref ref="STDOUT"/>-->
+    </root>
+
+</configuration>  

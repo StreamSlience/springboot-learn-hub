@@ -1,0 +1,10 @@
+server:
+  port: 8771
+#spring:
+#  profiles:
+#    active:
+logging:
+  level:
+    com.streamslience.springaction.logconfigurationlogback: debug
+  file:
+    path: ./logs
