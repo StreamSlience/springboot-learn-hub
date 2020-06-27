@@ -102,7 +102,6 @@
 
     <root level="info">
         <appender-ref ref="FILEOUT"/>
-<!--        <appender-ref ref="STDOUT"/>-->
     </root>
 
 </configuration>  
