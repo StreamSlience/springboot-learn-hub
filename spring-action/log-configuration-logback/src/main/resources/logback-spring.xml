@@ -89,7 +89,6 @@
     </appender>
 
     <!--
-
         name属性:用于指定受此logger作用(输出日志)的 某一个包 或 具体的某一个类。
         level属性:用于设置打印级别(打印级别为:TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF)。
                  如果没有设置该属性则当前的logger将会继承上级的级别。
