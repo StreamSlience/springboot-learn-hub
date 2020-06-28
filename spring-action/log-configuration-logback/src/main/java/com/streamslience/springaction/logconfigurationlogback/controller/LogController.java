@@ -1,12 +1,13 @@
-package com.streamslience.springaction.logconfigurationlogback;
+package com.streamslience.springaction.logconfigurationlogback.controller;
 
+import com.streamslience.springaction.logconfigurationlogback.service.LogService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 
 /**
  * <br>SpringBoot中获取日志对象的方式如下：
@@ -15,22 +16,30 @@ import org.springframework.web.bind.annotation.RestController;
  * <br>注意:两种方式创建的日志对象其实就是同一个。
  *
  * @author StreamSlience
- * @date 2020-06-27 23:23
+ * @date 2020-06-28 11:28
  */
 @Slf4j
 @RestController
 @RequestMapping("/log")
-public class PrintLogController {
+public class LogController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PrintLogController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogController.class);
+
+    @Autowired
+    private LogService logService;
 
     @GetMapping("/output")
     public String output() {
         LOGGER.info("OutPut-info:{}", System.currentTimeMillis());
         LOGGER.error("OutPut-error:{}", System.currentTimeMillis());
+        LOGGER.debug("OutPut-debug:{}", System.currentTimeMillis());
+        LOGGER.warn("OutPut-warn:{}", System.currentTimeMillis());
+        LOGGER.trace("OutPut-trace:{}", System.currentTimeMillis());
         log.info("log.equals(LOGGER):{}", log.equals(LOGGER));
-        return "success";
+
+        return logService.output();
     }
+
 
 
 }

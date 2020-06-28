@@ -1,0 +1,118 @@
+<!--
+>>>
+    对控制层、业务逻辑层 以及 定时任务 的日志进行隔离
+
+<<<
+-->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <springProperty scope="context" name="logging.file.path" source="logging.file.path"/>
+    <springProperty scope="context" name="logging.level"
+                    source="logging.level.com.streamslience.springaction.logconfigurationlogback"/>
+    <springProperty scope="context" name="logging.file.max-history" source="logging.file.max-history"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${logging.level}</level>
+        </filter>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+        <file>${logging.path}/log-configuration-logback/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logging.file.path}/log-configuration-logback/error.log.%d{yyyy-MM-dd}</FileNamePattern>
+            <MaxHistory>${logging.file.max-history}</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="TASK" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${logging.level}</level>
+        </filter>
+        <file>${logging.path}/log-configuration-logback/task/task.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logging.file.path}/log-configuration-logback/task/task.log.%d{yyyy-MM-dd}</FileNamePattern>
+            <MaxHistory>${logging.file.max-history}</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="CONTROLLER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <file>
+            ${logging.path}/log-configuration-logback/controller.log
+        </file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logging.file.path}/log-configuration-logback/controller.log.%d{yyyy-MM-dd}
+            </FileNamePattern>
+            <MaxHistory>${logging.file.max-history}</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="SERVICE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${logging.level}</level>
+        </filter>
+        <file>
+            ${logging.path}/log-configuration-logback/service.log
+        </file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logging.file.path}/log-configuration-logback/service.log.%d{yyyy-MM-dd}</FileNamePattern>
+            <MaxHistory>${logging.file.max-history}</MaxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.streamslience.springaction.logconfigurationlogback">
+        <appender-ref ref="ERROR"/>
+    </logger>
+
+    <logger name="com.streamslience.springaction.logconfigurationlogback.task.LogTask" level="${logging.level}" additivity="true">
+        <appender-ref ref="TASK"/>
+    </logger>
+
+    <logger name="com.streamslience.springaction.logconfigurationlogback.controller" additivity="true">
+        <appender-ref ref="CONTROLLER"/>
+    </logger>
+
+    <logger name="com.streamslience.springaction.logconfigurationlogback.service" additivity="true">
+        <appender-ref ref="SERVICE"/>
+    </logger>
+
+    <!--
+        注意: 如果<logger/>标签的additivity为false,则该<logger/>标签输出的日志将不能再在其他地方输出了
+    -->
+    <root level="${logging.level}">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

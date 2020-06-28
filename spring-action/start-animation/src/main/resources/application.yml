@@ -1,1 +1,4 @@
-
+# 显式指定启动动画文件
+banner:
+  charest: UTF-8
+  location: classpath:banner.txt

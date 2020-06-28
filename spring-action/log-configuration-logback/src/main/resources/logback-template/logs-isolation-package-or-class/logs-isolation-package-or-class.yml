@@ -1,0 +1,9 @@
+logging:
+    file:
+        path: ./logs
+        max-history: 30
+    level:
+        com.streamslience.springaction.logconfigurationlogback: info
+server:
+    port: 8771
+

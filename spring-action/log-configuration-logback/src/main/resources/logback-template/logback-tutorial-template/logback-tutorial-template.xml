@@ -1,14 +1,19 @@
+<!--
+
+    详细说明logback配置文件的使用方法
+
+-->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
 
     <!--属性文件:在yml/properties文件中找到对应的配置项-->
-    <springProperty scope="context" name="logging.file.path" source="logging.path"/>
+    <springProperty scope="context" name="logging.file.path" source="logging.file.path"/>
     <springProperty scope="context" name="logging.level"
-                    source="com.streamslience.springaction.logconfigurationlogback"/>
+                    source="logging.level.com.streamslience.springaction.logconfigurationlogback"/>
 
     <!-- 默认的控制台日志输出，一般生产环境都是后台启动，这个没太大作用 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%d{HH:mm:ss.SSS} %-5level %logger{80} - %msg%n</Pattern>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{80} - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -48,6 +53,12 @@
                         <level>INFO</level>
                         <onMatch>ACCEPT</onMatch>
                         <onMismatch>DENY</onMismatch>
+                    </filter>
+                再来看一个栗子:如果不希望现在INFO级别的日志里出现ERROR日志,我们可以如下设置过滤器
+                    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                        <level>ERROR</level>
+                        <onMatch>DENY</onMatch>
+                        <onMismatch>ACCEPT</onMismatch>
                     </filter>
         -->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -89,18 +100,21 @@
     </appender>
 
     <!--
+        下面的这个配置文件描述的是: name这个包下level级别的日志将会使用名为ref的<appender/>打印
         name属性:用于指定受此logger作用(输出日志)的 某一个包 或 具体的某一个类。
         level属性:用于设置打印级别(打印级别为:TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF)。
                  如果没有设置该属性则当前的logger将会继承上级的级别。
-        addtivity属性:用来描述是否向上级logger传递打印信息。默认是true。
+        addtivity属性:用来描述是否向上级logger传递打印信息。默认是true。(如果设置为false,则不能再打印到其他路径,即文件或控制台)
     -->
     <logger name="com.streamslience.springaction.logconfigurationlogback" level="${logging.level}" additivity="false">
         <!--用来指定具体的<appender/>-->
         <appender-ref ref="FILEOUT" />
+        <appender-ref ref="STDOUT"/>
     </logger>
 
     <root level="info">
         <appender-ref ref="FILEOUT"/>
+        <appender-ref ref="STDOUT"/>
     </root>
 
-</configuration>  
+</configuration>

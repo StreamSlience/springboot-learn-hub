@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.streamslience.springaction.logconfigurationlogback.dao.IMybatisDao">
+
+    <select id="selectById"
+            resultType="com.streamslience.springaction.logconfigurationlogback.entity.MyabtisEntity">
+        SELECT id,info FROM mybatis
+        WHERE id = #{id,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

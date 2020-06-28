@@ -1,10 +1,45 @@
 server:
-  port: 8771
-#spring:
-#  profiles:
-#    active:
+    port: 8771
+spring:
+    datasource:
+        hikari:
+            minimum-idle: 10
+            maximum-pool-size: 10
+            auto-commit: true
+            idle-timeout: 12000
+            max-lifetime: 30000
+            connection-timeout: 10000
+            connection-init-sql: SET names utf8mb4
+            connection-test-query: SELECT 1
+            read-only: false
+            pool-name: hikari
+        url: jdbc:mysql://rm-bp1we1k1c02ayr403zo.mysql.rds.aliyuncs.com:3306/learn?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&allowMultiQueries=true&useServerPrepStmts=false&useCompression=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&connectTimeout=2000&autoReconnect=true&useSSL=false
+        username: stream_1996
+        password: Onepiece@1996
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+
 logging:
-  level:
-    com.streamslience.springaction.logconfigurationlogback: debug
-  file:
-    path: ./logs
+    file:
+        path: "./logs"
+        max-history: 30
+        clean-history-on-start: true
+        max-size: 20MB
+        name: simple.log
+#        total-size-cap:
+    level:
+        com.streamslience.springaction.logconfigurationlogback: info
+    pattern:
+        dateformat: yyyy-MM-dd HH:mm:ss.SSS
+        rolling-file-name: "${logging.file.path}/log-configuration-logback/log.log.%d{yyyy-MM-dd}"
+        level: "%5p"
+        console: "%d - %msg%n"
+        file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+    register-shutdown-hook: true
+    exception-conversion-word: "%wEx"
+#    group:
+#    config: 设置自定义配置文件  在resources文件下使用logback-spring.xml 为官方默认设置 不需要再指定了
+
+
+mybatis:
+    mapper-locations: "classpath*:mapper/**/*.xml"
