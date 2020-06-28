@@ -40,6 +40,4 @@ public class LogController {
         return logService.output();
     }
 
-
-
 }
