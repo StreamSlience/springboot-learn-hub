@@ -9,18 +9,14 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.streamslience</groupId>
-    <artifactId>springboot-learn-hub</artifactId>
+    <artifactId>spring-data-elasticsearch</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-learn-hub</name>
+    <name>spring-data-elasticsearch</name>
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-annotation</module>
-        <module>spring-data-jpa</module>
-        <module>spring-action</module>
-        <module>spring-amqp</module>
-        <module>spring-data-elasticsearch</module>
+        <module>simple-learn</module>
     </modules>
 
     <properties>
@@ -30,18 +26,9 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web-services</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

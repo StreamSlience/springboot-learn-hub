@@ -1,0 +1,49 @@
+
+
+#spring:
+#  data:
+#    elasticsearch:
+#      client:
+#        reactive:
+#          connection-timeout: 2000
+#          socket-timeout: 2000
+#          max-in-memory-size: 30
+#          username:
+#          password:
+#          use-ssl: false
+
+
+spring:
+  application:
+    name: elasticsearch
+  datasource:
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 10
+      auto-commit: true
+      idle-timeout: 12000
+      max-lifetime: 30000
+      connection-timeout: 10000
+      connection-init-sql: SET names utf8mb4
+      connection-test-query: SELECT 1
+      read-only: false
+      pool-name: hikari
+    url: jdbc:mysql://rm-bp1we1k1c02ayr403zo.mysql.rds.aliyuncs.com:3306/learn?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&allowMultiQueries=true&useServerPrepStmts=false&useCompression=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&connectTimeout=2000&autoReconnect=true&useSSL=false
+    username: stream_1996
+    password: Onepiece@1996
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+  data:
+    elasticsearch:
+      repositories:
+        enabled: false
+#      client:
+#        reactive:
+#          endpoints: 127.0.0.1:9300
+#          username: elasticsearch
+      cluster-name: elasticsearch
+      cluster-nodes: localhost:9300
+
+server:
+  port: 8771
+

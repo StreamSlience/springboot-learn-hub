@@ -21,24 +21,39 @@ spring:
 
 logging:
     file:
-        path: "./logs"
+        # 设定日志文件的输出路径
+        path: "./logs/log.log"
+        # 设置归档日志文件的最大保留天数
         max-history: 30
-        clean-history-on-start: true
-        max-size: 20MB
-        name: simple.log
-#        total-size-cap:
+        # 设定 是否在启动时清除存档日志文件
+        clean-history-on-start: false
+        # 最大日志文件的大小
+        max-size: "20MB"
+        # 日志文件名(例如，“ myapp.log”)。名称可以是确切的位置，也可以相对于当前目录
+        name: "./simple.log"
+        # 设置要保留的日志备份的总大小
+        total-size-cap: "10GB"
     level:
         com.streamslience.springaction.logconfigurationlogback: info
     pattern:
-        dateformat: yyyy-MM-dd HH:mm:ss.SSS
+        # 设置格式化日期的格式,仅默认的Logback设置样式受支持
+        dateformat: "yyyy-MM-dd HH:mm:ss.SSS"
+        # 设置滚动日志文件的名称(包含路径),仅默认的Logback设置受支持
         rolling-file-name: "${logging.file.path}/log-configuration-logback/log.log.%d{yyyy-MM-dd}"
+        # 日志级别的附加模式
         level: "%5p"
+        # 控制台输出日志的格式
         console: "%d - %msg%n"
+        # 文件输出日志的格式
         file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
-    register-shutdown-hook: true
+    # 在日志框架初始化时，注册一个关闭挂钩程序
+#    register-shutdown-hook: true
+    # 记录异常时使用的转换文字
     exception-conversion-word: "%wEx"
 #    group:
-#    config: 设置自定义配置文件  在resources文件下使用logback-spring.xml 为官方默认设置 不需要再指定了
+    # 显式指定配置文件路径
+#    config: "classpath:logback.xml"
+# 设置自定义配置文件  在resources文件下使用logback-spring.xml 为官方默认设置 不需要再指定了
 
 
 mybatis:
