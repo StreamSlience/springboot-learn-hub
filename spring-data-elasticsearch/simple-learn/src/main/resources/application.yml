@@ -12,7 +12,6 @@
 #          password:
 #          use-ssl: false
 
-
 spring:
   application:
     name: elasticsearch
