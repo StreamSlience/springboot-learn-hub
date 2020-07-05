@@ -1,5 +1,6 @@
 package com.streamslience.springdataelasticsearch.simplelearn;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
@@ -8,7 +9,8 @@ import org.elasticsearch.search.aggregations.metrics.InternalAvg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
 import org.springframework.data.elasticsearch.core.query.FetchSourceFilter;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
@@ -22,10 +24,26 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/sys")
+@Api(value = "User", tags = {"User"}, description = "用户相关")
 public class SysController {
 
+    /**
+     * 按照网上的教程一开始使用的是
+     *     @Autowired
+     *     private ElasticsearchTemplate elasticsearchTemplate;
+     *     结果死活自动注入不了。
+     *     看了ElasticsearchDataAutoConfiguration类
+     *     发现名字为elasticsearchTemplate的bean对象注入的类型为ElasticsearchRestTemplate
+     *     其实现了ElasticsearchOperations接口
+     */
     @Autowired
-    private ElasticsearchTemplate elasticsearchTemplate;
+    private ElasticsearchOperations elasticsearchTemplate;
+
+    @Autowired
+    private ElasticsearchRestTemplate elasticsearchRestTemplate;
+
+    @Autowired
+    private ElasticsearchOperations elasticsearchOperations;
 
     @Autowired
     private UserRepository repository;
@@ -33,6 +51,7 @@ public class SysController {
     @PostMapping("/{index}")
     @ApiOperation("创建索引")
     public Boolean createIndex(@PathVariable String index) {
+        //不可以创建已经存在的索引
         return elasticsearchTemplate.createIndex(index);
     }
 
@@ -161,6 +180,4 @@ public class SysController {
         }
 
     }
-
-
 }

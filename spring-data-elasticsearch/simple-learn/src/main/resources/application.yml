@@ -1,17 +1,5 @@
 
 
-#spring:
-#  data:
-#    elasticsearch:
-#      client:
-#        reactive:
-#          connection-timeout: 2000
-#          socket-timeout: 2000
-#          max-in-memory-size: 30
-#          username:
-#          password:
-#          use-ssl: false
-
 spring:
   application:
     name: elasticsearch
@@ -35,13 +23,15 @@ spring:
   data:
     elasticsearch:
       repositories:
-        enabled: false
-#      client:
-#        reactive:
-#          endpoints: 127.0.0.1:9300
-#          username: elasticsearch
-      cluster-name: elasticsearch
-      cluster-nodes: localhost:9300
+        enabled: true
+      client:
+        reactive:
+          connection-timeout: 3000
+          socket-timeout: 3000
+          endpoints: 172.17.0.5:9300
+          use-ssl: on
+      cluster-name: g8NCfrC
+      cluster-nodes: 172.17.0.5:9300
 
 server:
   port: 8771
