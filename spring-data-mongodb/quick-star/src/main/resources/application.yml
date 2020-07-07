@@ -1,1 +1,13 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://root:123456@localhost:27017/admin
+#      host:
+#      database: admin
+#      port: 27017
+#      username: root
+#      password: 123456
+#      field-naming-strategy: org.springframework.data.mapping.model.CamelCaseAbbreviatingFieldNamingStrategy
+#      repositories:
+#        type: auto
 
