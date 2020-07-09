@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.streamslience.spring-data-jpa</groupId>
-    <artifactId>jap-multi-datasource</artifactId>
+    <artifactId>jpa-multi-datasource</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>jap-multi-datasource</name>
+    <name>jpa-multi-datasource</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
