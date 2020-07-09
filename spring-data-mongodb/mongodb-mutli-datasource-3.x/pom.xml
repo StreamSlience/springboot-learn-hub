@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.streamslience.spring-data-mongodb</groupId>
-    <artifactId>mongodb-mutli-datasource</artifactId>
+    <artifactId>mongodb-mutli-datasource-3.x</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mongodb-mutli-datasource</name>
+    <name>mongodb-mutli-datasource-3.x</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -51,6 +51,26 @@
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.data</groupId>-->
+<!--            <artifactId>spring-data-mongodb</artifactId>-->
+<!--            <version>2.1.10.RELEASE</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+            <version>3.0.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.22</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

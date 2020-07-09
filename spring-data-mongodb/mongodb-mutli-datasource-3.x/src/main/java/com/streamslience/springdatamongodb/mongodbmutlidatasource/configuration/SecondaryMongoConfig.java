@@ -1,4 +1,4 @@
-package com.streamslience.springdatamongodb.mongodbmutlidatasource.firstway.configuration;
+package com.streamslience.springdatamongodb.mongodbmutlidatasource.configuration;
 
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  * @date 2020-07-09 13:11
  */
 @Configuration
-@EnableMongoRepositories(basePackages = "com.streamslience.springdatamongodb.mongodbmutlidatasource.firstway.repositories.secondary", mongoTemplateRef = "secondaryMongoTemplate")
+@EnableMongoRepositories(basePackages = "com.streamslience.springdatamongodb.mongodbmutlidatasource.repositories.secondary", mongoTemplateRef = "secondaryMongoTemplate")
 public class SecondaryMongoConfig {
 
     @Bean(name = "secondaryMongoTemplate")

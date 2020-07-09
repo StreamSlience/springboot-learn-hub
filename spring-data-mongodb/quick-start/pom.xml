@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.streamslience.spring-data-mongodb</groupId>
-    <artifactId>quick-star</artifactId>
+    <artifactId>quick-start</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>quick-star</name>
+    <name>quick-start</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
