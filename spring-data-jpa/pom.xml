@@ -17,7 +17,7 @@
 
     <modules>
         <module>crud</module>
-        <module>dynamic-datasource</module>
+        <module>jpa-multi-datasource</module>
         <module>multi-table-query</module>
     </modules>
 

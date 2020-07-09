@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>quick-star</module>
+        <module>quick-start</module>
         <module>mongodb-dynamic-datasource</module>
     </modules>
 
