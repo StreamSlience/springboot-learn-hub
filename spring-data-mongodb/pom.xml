@@ -17,7 +17,7 @@
 
     <modules>
         <module>quick-start</module>
-        <module>mongodb-dynamic-datasource</module>
+        <module>mongodb-mutli-datasource</module>
     </modules>
 
     <properties>
