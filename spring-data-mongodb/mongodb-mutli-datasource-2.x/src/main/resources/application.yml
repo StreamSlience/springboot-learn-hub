@@ -2,12 +2,14 @@ spring:
   data:
     mongodb:
       primary:
-        host: localhost:27017
+        host: localhost
+        port: 27017
         username: root
         password: 123456
         database: admin
       secondary:
-        host: localhost:27017
+        host: localhost
+        port: 27017
         username: root
         password: 123456
         database: config

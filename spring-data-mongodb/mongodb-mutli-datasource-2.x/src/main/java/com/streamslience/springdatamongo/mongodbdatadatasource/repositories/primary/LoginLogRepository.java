@@ -1,5 +1,6 @@
 package com.streamslience.springdatamongo.mongodbdatadatasource.repositories.primary;
 
+
 import com.streamslience.springdatamongo.mongodbdatadatasource.entity.LoginLog;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

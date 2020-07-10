@@ -4,7 +4,7 @@ import com.streamslience.springdatamongo.mongodbdatadatasource.entity.LoginLog;
 import com.streamslience.springdatamongo.mongodbdatadatasource.entity.User;
 import com.streamslience.springdatamongo.mongodbdatadatasource.repositories.primary.LoginLogRepository;
 import com.streamslience.springdatamongo.mongodbdatadatasource.repositories.secondary.UserRepository;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,14 +34,14 @@ public class MongodbMutliDatasourceApplicationTests {
     }
 
     @Autowired
-    @Qualifier("primaryMongoTemplate")
+    @Qualifier("primaryMongoTemplate2")
     private MongoTemplate primaryMongoTemplate;
     @Autowired
-    @Qualifier("secondaryMongoTemplate")
+    @Qualifier("secondaryMongoTemplate2")
     private MongoTemplate secondaryMongoTemplate;
 
     @Test
-    void save() {
+    public void save() {
         User user = User.builder().id(UUID.randomUUID() + "").username("小明").registerTime(Instant.now()).build();
         secondaryMongoTemplate.save(user);
 

@@ -12,13 +12,13 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  * @date 2020-07-09 23:48
  */
 @Configuration
-@EnableMongoRepositories(basePackages = "com.streamslience.springdatamongo.mongodbdatadatasource.repositories.primary",mongoTemplateRef = "primaryMongoTemplate")
+@EnableMongoRepositories(basePackages = "com.streamslience.springdatamongo.mongodbdatadatasource.repositories.primary",mongoTemplateRef = "primaryMongoTemplate2")
 @ConfigurationProperties(prefix = "spring.data.mongodb.primary")
 public class PrimaryMongoConfig extends AbstractMongoConfig {
     @Override
     @Primary
-    @Bean("primaryMongoTemplate")
-    public MongoTemplate getMongoTemplate() throws Exception {
+    @Bean(name = "primaryMongoTemplate2")
+    public MongoTemplate getMongoTemplate() {
         return new MongoTemplate(mongoDbFactory());
     }
 }
