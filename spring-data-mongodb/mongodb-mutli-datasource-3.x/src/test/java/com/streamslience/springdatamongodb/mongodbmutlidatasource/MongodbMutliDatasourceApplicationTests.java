@@ -41,10 +41,10 @@ public class MongodbMutliDatasourceApplicationTests {
     }
 
     @Autowired
-    @Qualifier("primaryMongoTemplate")
+    @Qualifier("primaryMongoTemplate_1")
     private MongoTemplate primaryMongoTemplate;
     @Autowired
-    @Qualifier("secondaryMongoTemplate")
+    @Qualifier("secondaryMongoTemplate_1")
     private MongoTemplate secondaryMongoTemplate;
 
     @Test
