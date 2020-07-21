@@ -1,60 +1,60 @@
 server:
-    port: 8771
+  port: 8772
 spring:
-    datasource:
-        hikari:
-            minimum-idle: 10
-            maximum-pool-size: 10
-            auto-commit: true
-            idle-timeout: 12000
-            max-lifetime: 30000
-            connection-timeout: 10000
-            connection-init-sql: SET names utf8mb4
-            connection-test-query: SELECT 1
-            read-only: false
-            pool-name: hikari
-        url: jdbc:mysql://rm-bp1we1k1c02ayr403zo.mysql.rds.aliyuncs.com:3306/learn?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&allowMultiQueries=true&useServerPrepStmts=false&useCompression=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&connectTimeout=2000&autoReconnect=true&useSSL=false
-        username: stream_1996
-        password: Onepiece@1996
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        type: com.zaxxer.hikari.HikariDataSource
+  datasource:
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 10
+      auto-commit: true
+      idle-timeout: 12000
+      max-lifetime: 30000
+      connection-timeout: 10000
+      connection-init-sql: SET names utf8mb4
+      connection-test-query: SELECT 1
+      read-only: false
+      pool-name: hikari
+    url: jdbc:mysql://rm-bp1we1k1c02ayr403zo.mysql.rds.aliyuncs.com:3306/learn?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&allowMultiQueries=true&useServerPrepStmts=false&useCompression=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&connectTimeout=2000&autoReconnect=true&useSSL=false
+    username: stream_1996
+    password: Onepiece@1996
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
 
 logging:
-    file:
-        # 设定日志文件的输出路径
-        path: "./logs/log.log"
-        # 设置归档日志文件的最大保留天数
-        max-history: 30
-        # 设定 是否在启动时清除存档日志文件
-        clean-history-on-start: false
-        # 最大日志文件的大小
-        max-size: "20MB"
-        # 日志文件名(例如，“ myapp.log”)。名称可以是确切的位置，也可以相对于当前目录
-        name: "./simple.log"
-        # 设置要保留的日志备份的总大小
-        total-size-cap: "10GB"
-    level:
-        com.streamslience.springaction.logconfigurationlogback: info
-    pattern:
-        # 设置格式化日期的格式,仅默认的Logback设置样式受支持
-        dateformat: "yyyy-MM-dd HH:mm:ss.SSS"
-        # 设置滚动日志文件的名称(包含路径),仅默认的Logback设置受支持
-        rolling-file-name: "${logging.file.path}/log-configuration-logback/log.log.%d{yyyy-MM-dd}"
-        # 日志级别的附加模式
-        level: "%5p"
-        # 控制台输出日志的格式
-        console: "%d - %msg%n"
-        # 文件输出日志的格式
-        file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
-    # 在日志框架初始化时，注册一个关闭挂钩程序
-#    register-shutdown-hook: true
-    # 记录异常时使用的转换文字
-    exception-conversion-word: "%wEx"
-#    group:
-    # 显式指定配置文件路径
-#    config: "classpath:logback.xml"
+  file:
+    # 设定日志文件的输出路径
+    path: "./spring-action/log-configuration-logback/log/"
+    # 设置归档日志文件的最大保留天数
+    max-history: 30
+    # 设定 是否在启动时清除存档日志文件
+    clean-history-on-start: false
+    # 最大日志文件的大小
+    max-size: "20MB"
+    # 日志文件名(例如，“ myapp.log”)。名称可以是确切的位置，也可以相对于当前目录
+    name: "log.log"
+    # 设置要保留的日志备份的总大小
+    total-size-cap: "10GB"
+  level:
+    com.streamslience.springaction.logconfigurationlogback: info
+  pattern:
+    # 设置格式化日期的格式,仅默认的Logback设置样式受支持
+    dateformat: "yyyy-MM-dd HH:mm:ss.SSS"
+    # 设置滚动日志文件的名称(包含路径),仅默认的Logback设置受支持
+    rolling-file-name: "${logging.file.name}.%d{yyyy-MM-dd}"
+    # 日志级别的附加模式
+    level: "%5p"
+    # 控制台输出日志的格式
+    console: "%d - %msg%n"
+    # 文件输出日志的格式
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+  # 在日志框架初始化时，注册一个关闭挂钩程序
+  #    register-shutdown-hook: true
+  # 记录异常时使用的转换文字
+  exception-conversion-word: "%wEx"
+  #    group:
+  # 显式指定配置文件路径
+#    config: "classpath:logback-spring.xml" # logback-spring.xml为默认logback配置文件名不需要显式指定
 # 设置自定义配置文件  在resources文件下使用logback-spring.xml 为官方默认设置 不需要再指定了
 
 
 mybatis:
-    mapper-locations: "classpath*:mapper/**/*.xml"
+  mapper-locations: "classpath*:mapper/**/*.xml"
