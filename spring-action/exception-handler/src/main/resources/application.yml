@@ -1,0 +1,36 @@
+
+server:
+  port: 8771
+spring:
+  datasource:
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 10
+      auto-commit: true
+      idle-timeout: 12000
+      max-lifetime: 30000
+      connection-timeout: 10000
+      connection-init-sql: SET names utf8mb4
+      connection-test-query: SELECT 1
+      read-only: false
+      pool-name: hikari
+    url: jdbc:mysql://rm-bp1we1k1c02ayr403zo.mysql.rds.aliyuncs.com:3306/learn?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&allowMultiQueries=true&useServerPrepStmts=false&useCompression=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&connectTimeout=2000&autoReconnect=true&useSSL=false
+    username: stream_1996
+    password: Onepiece@1996
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+
+
+logging:
+  config: "classpath:logback-spring.xml"
+  file:
+    path: "./spring-action/exception-handler/log"
+    name: "log.log"
+    max-history: 30
+    clean-history-on-start: false
+    max-size: 10MB
+    total-size-cap: 1GB
+  level:
+    com.streamslience.springaction.exceptionhandler: debug
+  pattern:
+    rolling-file-name: ${logging.file.path}/${logging.file.name}.%d{yyyy-MM-dd}
