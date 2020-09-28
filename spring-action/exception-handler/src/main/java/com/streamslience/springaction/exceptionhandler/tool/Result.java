@@ -46,14 +46,6 @@ public class Result<T> implements Serializable {
         return new Result<>(data, ResponseCode.UN_KNOW_ERROR);
     }
 
-//    public static <T> Result<T> error(T data) {
-//
-//    }
-//
-//    public static <T> Result<T> error(){
-//
-//    }
-
     public static class Builder<T> {
         private T data;
         private String code;

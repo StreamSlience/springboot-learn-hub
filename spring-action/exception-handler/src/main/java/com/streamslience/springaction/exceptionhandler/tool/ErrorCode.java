@@ -17,12 +17,17 @@ public enum ErrorCode {
     /**
      *
      */
-    BIZ_EXCEPTION("9003", "业务异常");
+    BIZ_EXCEPTION("9003", "业务异常"),
+    /**
+     *
+     */
+    ILLEGAL_ARGUMENT_EXCEPTION("9004", "参数非法异常"),
+    ;
 
     private String code;
     private String name;
 
-     ErrorCode(String code, String name) {
+    ErrorCode(String code, String name) {
         this.name = name;
         this.code = code;
     }
