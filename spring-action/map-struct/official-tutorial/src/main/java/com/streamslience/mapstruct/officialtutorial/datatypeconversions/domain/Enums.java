@@ -2,6 +2,8 @@ package com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain;
 
 import lombok.Getter;
 
+import java.util.Arrays;
+
 /**
  * @author StreamSlience
  * @date 2020-10-10 14:25
@@ -26,5 +28,9 @@ public enum Enums {
         this.code = code;
         this.desc = desc;
         this.num = num;
+    }
+
+    public static Enums getByName(String name) {
+        return Arrays.stream(Enums.values()).filter(i -> i.name().equals(name)).findFirst().orElse(null);
     }
 }

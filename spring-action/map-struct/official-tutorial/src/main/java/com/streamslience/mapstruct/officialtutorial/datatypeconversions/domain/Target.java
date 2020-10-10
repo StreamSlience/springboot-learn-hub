@@ -2,6 +2,8 @@ package com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain;
 
 import lombok.Data;
 
+import java.nio.channels.InterruptedByTimeoutException;
+
 /**
  * 目标对象
  *
@@ -23,8 +25,57 @@ public class Target {
 
     private String value6;
 
+    private String value7;
+
+    private String value8;
+
+    private String value9;
+
+    private String value10;
+
     private String enums1;
 
     private Integer enums2;
 
+    private Enums enums3;
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
