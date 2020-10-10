@@ -2,6 +2,7 @@ package com.streamslience.mapstruct.officialtutorial.retrievingamapper.mapper;
 
 import com.streamslience.mapstruct.officialtutorial.retrievingamapper.domain.entity.UserEntity;
 import com.streamslience.mapstruct.officialtutorial.retrievingamapper.domain.model.UserVO;
+import org.mapstruct.Mapper;
 
 /**
  * User - MapStruct接口
