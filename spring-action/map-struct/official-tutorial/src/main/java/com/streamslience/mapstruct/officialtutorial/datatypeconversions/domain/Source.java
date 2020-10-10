@@ -1,7 +1,6 @@
 package com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain;
 
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
-import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Data;
 
 import javax.xml.datatype.XMLGregorianCalendar;

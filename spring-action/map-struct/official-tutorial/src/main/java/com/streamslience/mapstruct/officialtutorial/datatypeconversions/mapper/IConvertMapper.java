@@ -6,6 +6,7 @@ import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,5 +31,8 @@ public interface IConvertMapper {
 
     @IterableMapping(numberFormat = "$#.00")
     List<String> stringsFromIntegers(List<Integer> integers);
+
+    @IterableMapping(dateFormat = "yyyy-MM-dd HH:mm:ss")
+    List<String> stringsFromDate(List<Date> dates);
 
 }

@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,6 +53,18 @@ public class DatatypeTest {
             add(100);
             add(200);
             add(300);
+        }});
+        System.err.println(targets);
+    }
+
+    @Test
+    public void convert4() {
+        List<String> targets = new ArrayList<>();
+        System.err.println(targets);
+        targets = iConvertMapper.stringsFromDate(new ArrayList<Date>() {{
+            add(new Date());
+            add(new Date());
+            add(new Date());
         }});
         System.err.println(targets);
     }
