@@ -3,6 +3,7 @@ package com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain;
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import lombok.Data;
 
+import javax.print.attribute.standard.PrinterResolution;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -68,6 +69,15 @@ public class Source {
      *
      */
     private ReferenceSource referenceSource2 = new ReferenceSource("2");
+
+    /**
+     * 嵌套映射
+     */
+    private Fish fish = new Fish("kind","name");
+
+    private Interior interior = new Interior("ornament");
+
+    private Material material = new Material("material");
 
 }
 
