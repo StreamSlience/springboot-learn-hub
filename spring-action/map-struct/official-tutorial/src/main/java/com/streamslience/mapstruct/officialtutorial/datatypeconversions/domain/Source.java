@@ -58,6 +58,17 @@ public class Source {
      */
     private String enums3 = "A";
 
+    /**
+     * 引用对象 (源 和 目标 属性类型不同时 需要通过子映射方法进行映射)
+     */
+    private ReferenceSource referenceSource1 = new ReferenceSource("1");
+
+    /**
+     * 引用对象 (源 和 目标 属性类型相同时 直接赋值)
+     *
+     */
+    private ReferenceSource referenceSource2 = new ReferenceSource("2");
+
 }
 
 

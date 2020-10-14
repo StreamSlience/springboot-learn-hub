@@ -1,5 +1,7 @@
 package com.streamslience.mapstruct.officialtutorial.datatypeconversions.mapper;
 
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.ReferenceSource;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.ReferenceTarget;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.Source;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.Target;
 import org.mapstruct.IterableMapping;
@@ -18,6 +20,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface IConvertMapper {
 
+    @Mapping(target = "referenceTarget", source = "referenceSource1")
     @Mapping(target = "enums3", expression = "java(com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.Enums.getByName(source.getEnums3()))")
     @Mapping(target = "enums2", expression = "java(source.getEnums2().getNum())")
     @Mapping(target = "value10", dateFormat = "yyyy-MM-dd")
@@ -26,6 +29,16 @@ public interface IConvertMapper {
     @Mapping(target = "value7", numberFormat = "#.##E0")
     @Mapping(source = "value5", target = "value5", numberFormat = "$#.00")
     Target targetFromSource(Source source);
+
+    /**
+     * 引用对象转换函数，
+     * MapStruct会先来查询时候已经存在这样的方法，
+     * 如果没有则自动生成这样一个子映射方法进行调用
+     *
+     * @param referenceSource
+     * @return
+     */
+    ReferenceTarget referenceTargetFromReferenceSource(ReferenceSource referenceSource);
 
     List<Target> targetFromSource(List<Source> sources);
 
