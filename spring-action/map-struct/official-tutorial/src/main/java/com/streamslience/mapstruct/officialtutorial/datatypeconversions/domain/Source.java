@@ -66,19 +66,19 @@ public class Source {
 
     /**
      * 引用对象 (源 和 目标 属性类型相同时 直接赋值)
-     *
      */
     private ReferenceSource referenceSource2 = new ReferenceSource("2");
 
     /**
      * 嵌套映射
      */
-    private Fish fish = new Fish("kind","name");
+    private Fish fish = new Fish("kind", "name", "type");
 
     private Interior interior = new Interior("ornament");
 
-    private Material material = new Material("material");
+    private String material = "material";
 
+    private Quality quality = new Quality();
 }
 
 

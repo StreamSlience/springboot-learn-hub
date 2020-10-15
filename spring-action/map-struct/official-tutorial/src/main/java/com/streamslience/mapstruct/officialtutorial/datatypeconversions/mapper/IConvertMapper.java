@@ -20,6 +20,12 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface IConvertMapper {
 
+    @Mapping(target = "quality.report.organisation.name", source = "quality.report.organisationName")
+    @Mapping(target = "material.materialType", source = "material")
+    @Mapping(target = "ornament",source = "interior.ornament")
+    //@Mapping(target = "fish.name", ignore = true)
+    @Mapping(target = "fish.name", constant = "nameConstant")
+    @Mapping(target = "fish.kind", source = "fish.type")
     @Mapping(target = "referenceTarget", source = "referenceSource1")
     @Mapping(target = "enums3", expression = "java(com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.Enums.getByName(source.getEnums3()))")
     @Mapping(target = "enums2", expression = "java(source.getEnums2().getNum())")

@@ -4,11 +4,11 @@ import lombok.Data;
 
 /**
  * @author StreamSlience
- * @date 2020-10-14 20:56
+ * @date 2020-10-15 15:11
  */
 @Data
-public class Quality {
+public class MaterialDto {
 
-    private Report report = new Report();
+    private String materialType;
 
 }

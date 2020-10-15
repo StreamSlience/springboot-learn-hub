@@ -41,7 +41,13 @@ public class Target {
 
     private ReferenceSource referenceSource2;
 
+    private Fish fish;
 
+    private String ornament;
+
+    private Material material;
+
+    private Quality quality;
 }
 
 

@@ -1,8 +1,11 @@
 package com.streamslience.mapstruct.officialtutorial.datatypeconversions;
 
 import com.streamslience.mapstruct.officialtutorial.OfficialTutorialApplication;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.FishTank;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.FishTankWithVolumeDto;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.Source;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.Target;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mapper.FishTankMapperWithVolume;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mapper.IConvertMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +27,9 @@ public class DatatypeTest {
 
     @Autowired
     private IConvertMapper iConvertMapper;
+
+    @Autowired
+    private FishTankMapperWithVolume fishTankMapperWithVolume;
 
     @Test
     public void convert1() {
@@ -67,6 +73,14 @@ public class DatatypeTest {
             add(new Date());
         }});
         System.err.println(targets);
+    }
+
+    @Test
+    public void convert5() {
+        FishTankWithVolumeDto fishTankWithVolumeDto = new FishTankWithVolumeDto();
+        System.err.println(fishTankWithVolumeDto);
+        fishTankWithVolumeDto = fishTankMapperWithVolume.map(new FishTank());
+        System.err.println(fishTankWithVolumeDto);
     }
 
 }

@@ -13,11 +13,14 @@ public class Fish {
 
     private String name;
 
+    private String type;
+
     public Fish() {
     }
 
-    public Fish(String kind, String name) {
+    public Fish(String kind, String name, String type) {
         this.kind = kind;
         this.name = name;
+        this.type = type;
     }
 }

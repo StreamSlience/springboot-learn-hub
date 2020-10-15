@@ -1,6 +1,5 @@
 package com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain;
 
-import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.Data;
 
 /**
@@ -10,6 +9,8 @@ import lombok.Data;
 @Data
 public class Report {
 
-    private Organisation organisation;
+    private Organisation organisation = new Organisation();
+
+    private String organisationName = "organisationName";
 
 }
