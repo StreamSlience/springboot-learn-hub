@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 转换接口
+ * 映射类型转换-综述
  *
  * @author StreamSlience
  * @date 2020-10-10 13:59

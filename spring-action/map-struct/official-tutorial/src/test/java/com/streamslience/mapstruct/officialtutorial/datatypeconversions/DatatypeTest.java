@@ -1,10 +1,8 @@
 package com.streamslience.mapstruct.officialtutorial.datatypeconversions;
 
 import com.streamslience.mapstruct.officialtutorial.OfficialTutorialApplication;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.FishTank;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.FishTankWithVolumeDto;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.Source;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.Target;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.*;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mapper.CarMapper;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mapper.FishTankMapperWithVolume;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mapper.IConvertMapper;
 import org.junit.Test;
@@ -27,6 +25,9 @@ public class DatatypeTest {
 
     @Autowired
     private IConvertMapper iConvertMapper;
+
+    @Autowired
+    private CarMapper carMapper;
 
     @Autowired
     private FishTankMapperWithVolume fishTankMapperWithVolume;
@@ -75,12 +76,26 @@ public class DatatypeTest {
         System.err.println(targets);
     }
 
+    /**
+     * 映射类型转换-调用其他映射方法(Invoking custom mapping method)
+     */
     @Test
     public void convert5() {
         FishTankWithVolumeDto fishTankWithVolumeDto = new FishTankWithVolumeDto();
         System.err.println(fishTankWithVolumeDto);
         fishTankWithVolumeDto = fishTankMapperWithVolume.map(new FishTank());
         System.err.println(fishTankWithVolumeDto);
+    }
+
+    /**
+     * 映射类型转换-调用其他映射器(Invoking other mappers)
+     */
+    @Test
+    public void convert6() {
+        CarDto carDto = new CarDto();
+        System.err.println(carDto);
+        carDto = carMapper.carToCarDto(new Car(new Date(), "2020-10-17 10:10:10"));
+        System.err.println(carDto);
     }
 
 }
