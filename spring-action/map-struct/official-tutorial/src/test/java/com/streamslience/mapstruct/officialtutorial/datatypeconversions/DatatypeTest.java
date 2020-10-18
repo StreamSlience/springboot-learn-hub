@@ -1,10 +1,13 @@
 package com.streamslience.mapstruct.officialtutorial.datatypeconversions;
 
 import com.streamslience.mapstruct.officialtutorial.OfficialTutorialApplication;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.*;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mapper.CarMapper;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mapper.FishTankMapperWithVolume;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mapper.IConvertMapper;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain.*;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper.CarMapper;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper.FishTankMapperWithVolume;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper.IConvertMapper;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mappingmethodselectionbasedonqualifiers.domain.GermanRelease;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mappingmethodselectionbasedonqualifiers.domain.OriginalRelease;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mappingmethodselectionbasedonqualifiers.mapper.MovieMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,9 @@ public class DatatypeTest {
 
     @Autowired
     private FishTankMapperWithVolume fishTankMapperWithVolume;
+
+    @Autowired
+    private MovieMapper movieMapper;
 
     @Test
     public void convert1() {
@@ -96,6 +102,14 @@ public class DatatypeTest {
         System.err.println(carDto);
         carDto = carMapper.carToCarDto(new Car(new Date(), "2020-10-17 10:10:10"));
         System.err.println(carDto);
+    }
+
+    @Test
+    public void convert7(){
+        GermanRelease germanRelease = new GermanRelease();
+        System.err.println(germanRelease);
+        germanRelease =  movieMapper.toGerman(new OriginalRelease("hahaha"));
+        System.err.println(germanRelease);
     }
 
 }

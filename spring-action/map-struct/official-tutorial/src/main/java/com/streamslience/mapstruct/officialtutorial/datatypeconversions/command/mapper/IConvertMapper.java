@@ -1,9 +1,9 @@
-package com.streamslience.mapstruct.officialtutorial.datatypeconversions.mapper;
+package com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper;
 
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.ReferenceSource;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.ReferenceTarget;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.Source;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.Target;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain.ReferenceSource;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain.ReferenceTarget;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain.Source;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain.Target;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -27,7 +27,7 @@ public interface IConvertMapper {
     @Mapping(target = "fish.name", constant = "nameConstant")
     @Mapping(target = "fish.kind", source = "fish.type")
     @Mapping(target = "referenceTarget", source = "referenceSource1")
-    @Mapping(target = "enums3", expression = "java(com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.Enums.getByName(source.getEnums3()))")
+    @Mapping(target = "enums3", expression = "java(com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain.Enums.getByName(source.getEnums3()))")
     @Mapping(target = "enums2", expression = "java(source.getEnums2().getNum())")
     @Mapping(target = "value10", dateFormat = "yyyy-MM-dd")
     @Mapping(target = "value9", dateFormat = "yyyy-MM-dd HH:mm:ss")

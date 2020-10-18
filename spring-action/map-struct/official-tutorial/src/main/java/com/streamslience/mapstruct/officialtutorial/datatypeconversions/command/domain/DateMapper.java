@@ -1,4 +1,4 @@
-package com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain;
+package com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain;
 
 import org.springframework.stereotype.Component;
 

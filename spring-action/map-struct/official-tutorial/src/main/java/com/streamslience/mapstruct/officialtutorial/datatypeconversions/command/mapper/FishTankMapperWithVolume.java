@@ -1,8 +1,8 @@
-package com.streamslience.mapstruct.officialtutorial.datatypeconversions.mapper;
+package com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper;
 
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.FishTank;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.FishTankWithVolumeDto;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain.VolumeDto;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain.FishTank;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain.FishTankWithVolumeDto;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain.VolumeDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

@@ -1,9 +1,8 @@
-package com.streamslience.mapstruct.officialtutorial.datatypeconversions.domain;
+package com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain;
 
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import lombok.Data;
 
-import javax.print.attribute.standard.PrinterResolution;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.math.BigDecimal;
 import java.math.BigInteger;
