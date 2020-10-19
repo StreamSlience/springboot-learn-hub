@@ -1,4 +1,4 @@
-package com.streamslience.mapstruct.officialtutorial.datatypeconversions.mappingmethodselectionbasedonqualifiers;
+package com.streamslience.mapstruct.officialtutorial.datatypeconversions.qualifiers.first;
 
 import org.mapstruct.Qualifier;
 
@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 @Qualifier
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.CLASS)
-public @interface GermanToEnglish {
+public @interface EnglishToGerman {
 }

@@ -2,12 +2,16 @@ package com.streamslience.mapstruct.officialtutorial.datatypeconversions;
 
 import com.streamslience.mapstruct.officialtutorial.OfficialTutorialApplication;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain.*;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper.CarMapper;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper.ICarMapper;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper.FishTankMapperWithVolume;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper.IConvertMapper;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mappingmethodselectionbasedonqualifiers.domain.GermanRelease;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mappingmethodselectionbasedonqualifiers.domain.OriginalRelease;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.mappingmethodselectionbasedonqualifiers.mapper.MovieMapper;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.qualifiers.first.domain.GermanFirst;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.qualifiers.first.domain.OriginalFirst;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.qualifiers.first.mapper.MovieFirstMapper;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.qualifiers.second.domain.GermanSecond;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.qualifiers.second.domain.OriginalSecond;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.qualifiers.second.mapper.MovieSecondMapper;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +34,16 @@ public class DatatypeTest {
     private IConvertMapper iConvertMapper;
 
     @Autowired
-    private CarMapper carMapper;
+    private ICarMapper ICarMapper;
 
     @Autowired
     private FishTankMapperWithVolume fishTankMapperWithVolume;
 
     @Autowired
-    private MovieMapper movieMapper;
+    private MovieFirstMapper movieFirstMapper;
+
+    @Autowired
+    private MovieSecondMapper movieSecondMapper;
 
     @Test
     public void convert1() {
@@ -100,16 +107,68 @@ public class DatatypeTest {
     public void convert6() {
         CarDto carDto = new CarDto();
         System.err.println(carDto);
-        carDto = carMapper.carToCarDto(new Car(new Date(), "2020-10-17 10:10:10"));
+        carDto = ICarMapper.carToCarDto(new Car(new Date(), "2020-10-17 10:10:10"));
         System.err.println(carDto);
     }
 
     @Test
-    public void convert7(){
-        GermanRelease germanRelease = new GermanRelease();
-        System.err.println(germanRelease);
-        germanRelease =  movieMapper.toGerman(new OriginalRelease("hahaha"));
-        System.err.println(germanRelease);
+    public void convert7() {
+        GermanFirst germanFirst = new GermanFirst();
+        System.err.println(germanFirst);
+        germanFirst = movieFirstMapper.toGerman(new OriginalFirst("hahaha"));
+        Assert.assertEquals("映射结果错误", "GermanToEnglish", germanFirst.getTitle());
+        System.err.println(germanFirst);
+
+        System.err.println("---------------------------");
+        GermanSecond germanSecond = new GermanSecond();
+        System.err.println(germanSecond);
+        germanSecond = movieSecondMapper.toGerman(new OriginalSecond("hahaha"));
+        Assert.assertEquals("映射结果错误", "EnglishToGerman", germanSecond.getTitle());
+        System.err.println(germanSecond);
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
