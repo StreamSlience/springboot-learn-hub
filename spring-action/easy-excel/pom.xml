@@ -14,6 +14,12 @@
     <name>easy-excel</name>
     <description>Demo project for Spring Boot</description>
 
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>es-official-tutorial</module>
+    </modules>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
