@@ -111,6 +111,9 @@ public class DatatypeTest {
         System.err.println(carDto);
     }
 
+    /**
+     * 映射类型转换-基于限定词的映射方法选择(Mapping method selection based on qualifiers)
+     */
     @Test
     public void convert7() {
         GermanFirst germanFirst = new GermanFirst();
