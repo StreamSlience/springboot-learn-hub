@@ -8,10 +8,9 @@ import com.streamslience.easyexcel.officialtutorial.write.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.omg.IOP.ComponentIdHelper;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import sun.rmi.log.LogHandler;
+import sun.reflect.generics.tree.VoidDescriptor;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +38,8 @@ public class WriteTest {
     private static final String CONVERSION_NAME = FILE_NAME + "conversion";
 
     private static final String IMAGES_NAME = FILE_NAME + "images";
+
+    private static final String WIDTH_HEIGHT_NAME = FILE_NAME + "widthHeight";
 
     private static final List<WriteBO> WRITE_BOS = new ArrayList<WriteBO>() {{
         add(new WriteBO("哈哈哈", new Date(), 1D));
@@ -124,7 +125,9 @@ public class WriteTest {
      */
     @Test
     public void writeImages() throws IOException {
-        List<ImageBO> list = new ArrayList<ImageBO>() {{ add(new ImageBO()); }};
+        List<ImageBO> list = new ArrayList<ImageBO>() {{
+            add(new ImageBO());
+        }};
         String fileName = IMAGES_NAME + System.currentTimeMillis() + ".xls";
         String imagePath = System.getProperty("user.dir") + "\\src\\main\\resources\\images\\image.jpg";
 
@@ -137,6 +140,12 @@ public class WriteTest {
             list.get(0).setUrl(new URL("https://pic1.zhimg.com/80/v2-8e8e575baec14e75ed7f9ca614a784c5_720w.jpg?source=1940ef5c"));
             EasyExcel.write(fileName, ImageBO.class).sheet().doWrite(list);
         }
+    }
+
+    @Test
+    public void writeWidthAndHeight() {
+        EasyExcel.write(WIDTH_HEIGHT_NAME + System.currentTimeMillis() + ".xls", WidthAndHeightBO.class).sheet("设定行高和列宽").doWrite(WRITE_BOS);
+
     }
 
 }

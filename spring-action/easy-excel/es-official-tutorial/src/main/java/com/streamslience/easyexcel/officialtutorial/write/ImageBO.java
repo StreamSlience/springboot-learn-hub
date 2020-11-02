@@ -21,15 +21,18 @@ import java.net.URL;
 @ColumnWidth(45)
 public class ImageBO {
 
-    // 图片导出方式有5种
     private File file;
+
     private InputStream inputStream;
+
     /**
      * 如果string类型 必须指定转换器，string默认转换成string，该转换器是官方支持的
      */
     @ExcelProperty(converter = StringImageConverter.class)
     private String string;
+
     private byte[] byteArray;
+
     /**
      * 根据url导出 版本2.1.1才支持该种模式
      */
