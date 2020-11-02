@@ -3,17 +3,17 @@ package com.streamslience.easyexcel.officialtutorial.read;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.alibaba.fastjson.JSON;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * <h2>行监听器</h2>
+ *
  * @author StreamSlience
  * @date 2020-11-02 12:38
  */
-@Data
 @Slf4j
 public class ReadListener extends AnalysisEventListener<ReadBO> {
 
@@ -38,7 +38,7 @@ public class ReadListener extends AnalysisEventListener<ReadBO> {
      */
     @Override
     public void doAfterAllAnalysed(AnalysisContext context) {
-        log.info("所有数据解析完毕：{}", JSON.toJSONString(list));
+        log.info("所有{}条数据解析完毕：{}", list.size(), JSON.toJSONString(list));
+        System.out.print("\n");
     }
-
 }
