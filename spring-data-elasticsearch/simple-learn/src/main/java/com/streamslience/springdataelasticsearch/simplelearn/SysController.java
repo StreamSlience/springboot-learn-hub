@@ -22,19 +22,20 @@ import java.util.List;
  * @author StreamSlience
  * @date 2020-06-30 1:14
  */
+@SuppressWarnings("ALL")
 @RestController
 @RequestMapping("/sys")
-@Api(value = "User", tags = {"User"}, description = "用户相关")
+@Api(value = "User", tags = {"User"})
 public class SysController {
 
     /**
      * 按照网上的教程一开始使用的是
-     *     @Autowired
-     *     private ElasticsearchTemplate elasticsearchTemplate;
-     *     结果死活自动注入不了。
-     *     看了ElasticsearchDataAutoConfiguration类
-     *     发现名字为elasticsearchTemplate的bean对象注入的类型为ElasticsearchRestTemplate
-     *     其实现了ElasticsearchOperations接口
+     * {@code @Autowired}
+     * private ElasticsearchTemplate elasticsearchTemplate;
+     * 结果死活自动注入不了。
+     * 看了ElasticsearchDataAutoConfiguration类
+     * 发现名字为elasticsearchTemplate的bean对象注入的类型为ElasticsearchRestTemplate
+     * 其实现了ElasticsearchOperations接口
      */
     @Autowired
     private ElasticsearchOperations elasticsearchTemplate;
@@ -69,64 +70,65 @@ public class SysController {
 
     @PostMapping("/save")
     @ApiOperation("新增")
-    public SysUser save(@RequestBody SysUser user){
+    public SysUser save(@RequestBody SysUser user) {
         return repository.save(user);
     }
 
     @PostMapping("/saveAll")
     @ApiOperation("批量新增")
-    public Iterable<SysUser> saveAll(@RequestBody List<SysUser> users){
-        return  repository.saveAll(users);
+    public Iterable<SysUser> saveAll(@RequestBody List<SysUser> users) {
+        return repository.saveAll(users);
     }
 
     @PostMapping("/findAllAndSort")
     @ApiOperation("查询全部并根据密码排序")
-    public Iterable<SysUser> findAllAndSort(){
+    public Iterable<SysUser> findAllAndSort() {
         return repository.findAll(Sort.by("password").ascending());
     }
 
     @PostMapping("/findAll")
     @ApiOperation("查询全部")
-    public Iterable<SysUser> findAll(){
+    public Iterable<SysUser> findAll() {
         return repository.findAll();
     }
 
     @PostMapping("/findByNickname")
     @ApiOperation("根据昵称查询用户")
-    public List<SysUser> findByNickname(@RequestParam("nickname")String nickName){
-        List<SysUser> list =  repository.findByNickname(nickName);
+    public List<SysUser> findByNickname(@RequestParam("nickname") String nickName) {
+        List<SysUser> list = repository.findByNickname(nickName);
         return list;
     }
 
     @PostMapping("/findByNicknameOrPassword")
     @ApiOperation("根据昵称或者密码查询用户")
-    public List<SysUser> findByNicknameOrPassword(@RequestParam("nickname")String nickName,@RequestParam("password")String Password){
-        List<SysUser> list =  repository.findByNicknameOrPassword(nickName,Password);
+    public List<SysUser> findByNicknameOrPassword(@RequestParam("nickname") String nickName, @RequestParam("password") String password) {
+        List<SysUser> list = repository.findByNicknameOrPassword(nickName, password);
         return list;
     }
 
     @PostMapping("/query")
     @ApiOperation("自定义查询")
-    public Page<SysUser> query(@RequestParam("username")String userName){
-        NativeSearchQueryBuilder builder=new NativeSearchQueryBuilder();
-        builder.withQuery(QueryBuilders.matchQuery("username",userName));
+    public Page<SysUser> query(@RequestParam("username") String userName) {
+        NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
+        builder.withQuery(QueryBuilders.matchQuery("username", userName));
         //如果实体和数据的名称对应就会自动封装，pageable分页参数
         Page<SysUser> items = this.repository.search(builder.build());
         long total = items.getTotalElements();
-        System.out.println("查询数量为:"+total);
+        System.out.println("查询数量为:" + total);
         return items;
     }
 
     /**
      * 模糊查找
+     *
      * @param userName
      * @return
      */
     @PostMapping("/fuzzyQuery")
     @ApiOperation("模糊查找根据分词去模糊，如果默认为5，输入4是没有办法模糊的")
-    public Page<SysUser> fuzzyQuery(@RequestParam("username") String userName){
-        NativeSearchQueryBuilder builder=new NativeSearchQueryBuilder();
-        builder.withQuery(QueryBuilders.fuzzyQuery("username",userName));
+    public Page<SysUser> fuzzyQuery(@RequestParam("username") String userName) {
+        NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
+        builder.withQuery(QueryBuilders.fuzzyQuery("username", userName));
         // 查找
         Page<SysUser> page = this.repository.search(builder.build());
         return page;
@@ -137,9 +139,9 @@ public class SysController {
      */
     @PostMapping("/aggregateQuery")
     @ApiOperation("根据列进行聚合查询")
-    public void aggregateQuery(@RequestParam("clumname") String clumname){
+    public void aggregateQuery(@RequestParam("clumname") String clumname) {
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
-        queryBuilder.withSourceFilter(new FetchSourceFilter(new String []{""},null));
+        queryBuilder.withSourceFilter(new FetchSourceFilter(new String[]{""}, null));
         // 添加一个新的聚合，聚合类型为terms，聚合名称为列明，列名称为
         queryBuilder.addAggregation(
                 AggregationBuilders.terms(clumname).field(clumname));
@@ -158,13 +160,13 @@ public class SysController {
 
     @PostMapping("/arrregateAvg")
     @ApiOperation("根据列进行聚合查询求平均值")
-    public void arrregateAvg(@RequestParam("clumname") String clumname){
+    public void arrregateAvg(@RequestParam("clumname") String clumname) {
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
-        queryBuilder.withSourceFilter(new FetchSourceFilter(new String []{""},null));
+        queryBuilder.withSourceFilter(new FetchSourceFilter(new String[]{""}, null));
 
         queryBuilder.addAggregation(AggregationBuilders.terms(clumname).field(clumname).subAggregation(AggregationBuilders.avg("ageAvg").field("age")));
 
-        AggregatedPage aggPage =(AggregatedPage<SysUser>) repository.search(queryBuilder.build());
+        AggregatedPage aggPage = (AggregatedPage<SysUser>) repository.search(queryBuilder.build());
 
         StringTerms agg = (StringTerms) aggPage.getAggregation(clumname);
         // 3.2、获取桶
@@ -172,7 +174,7 @@ public class SysController {
 
         // 3.3、遍历
         for (StringTerms.Bucket bucket : buckets) {
-            System.out.println(bucket.getKeyAsString()+",共"+bucket.getDocCount()+"编");
+            System.out.println(bucket.getKeyAsString() + ",共" + bucket.getDocCount() + "编");
 
             // 3.6.获取子聚合结果：
             InternalAvg avg = (InternalAvg) bucket.getAggregations().asMap().get("ageAvg");

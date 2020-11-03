@@ -14,10 +14,28 @@ import java.util.Set;
 @Mapper
 public interface CarMapper {
 
+    /**
+     * 映射方法
+     *
+     * @param integers
+     * @return
+     */
     Set<String> integerSetToStringSet(Set<Integer> integers);
 
+    /**
+     * 映射方法
+     *
+     * @param cars
+     * @return
+     */
     List<CarDto> carsToCarDtos(List<Car> cars);
 
+    /**
+     * 映射方法
+     *
+     * @param car
+     * @return
+     */
     CarDto carToCarDto(Car car);
 
 }

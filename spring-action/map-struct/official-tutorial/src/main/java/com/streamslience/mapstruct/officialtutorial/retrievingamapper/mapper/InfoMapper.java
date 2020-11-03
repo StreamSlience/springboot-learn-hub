@@ -11,6 +11,12 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface InfoMapper {
 
+    /**
+     * 映射方法
+     *
+     * @param infoEntity
+     * @return
+     */
     InfoVO from(InfoEntity infoEntity);
 
 }

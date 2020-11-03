@@ -20,9 +20,9 @@ public interface UserRepository extends ElasticsearchRepository<SysUser,Long> {
     /**
      * 根据昵称或者用户名进行查找
      * @param nickName
-     * @param Password
+     * @param password
      * @return
      */
-    List<SysUser> findByNicknameOrPassword(String nickName,String Password);
+    List<SysUser> findByNicknameOrPassword(String nickName,String password);
 
 }

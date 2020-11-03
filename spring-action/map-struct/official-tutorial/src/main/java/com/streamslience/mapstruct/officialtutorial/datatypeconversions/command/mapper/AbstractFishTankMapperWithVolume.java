@@ -13,8 +13,14 @@ import org.mapstruct.Mapping;
  * @date 2020-10-15 15:14
  */
 @Mapper(componentModel = "spring")
-public abstract class FishTankMapperWithVolume {
+public abstract class AbstractFishTankMapperWithVolume {
 
+    /**
+     * 映射方法
+     *
+     * @param source
+     * @return
+     */
     @Mapping(target = "fish.kind", source = "source.fish.type")
     @Mapping(target = "material.materialType", source = "source.material")
     @Mapping(target = "quality.document", source = "source.quality.report")

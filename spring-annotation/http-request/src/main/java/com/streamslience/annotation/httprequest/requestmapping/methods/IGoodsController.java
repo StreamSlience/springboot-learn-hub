@@ -15,6 +15,8 @@ import java.util.List;
 public interface IGoodsController {
 
     /**
+     * 查询详情
+     *
      * @param id 主键
      * @return 查询实体
      */
@@ -22,6 +24,8 @@ public interface IGoodsController {
     GoodsBO get(@PathVariable(value = "id") String id);
 
     /**
+     * 查询列表
+     *
      * @param goodsQry 查询入参实体
      * @return 实体集合
      */
@@ -29,6 +33,8 @@ public interface IGoodsController {
     List<GoodsBO> getList(@RequestBody GoodsQry goodsQry);
 
     /**
+     * 删除
+     *
      * @param id 主键
      * @return 布尔类型
      */

@@ -20,9 +20,15 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface IConvertMapper {
 
+    /**
+     * 映射方法
+     *
+     * @param source
+     * @return
+     */
     @Mapping(target = "quality.report.organisation.name", source = "quality.report.organisationName")
     @Mapping(target = "material.materialType", source = "material")
-    @Mapping(target = "ornament",source = "interior.ornament")
+    @Mapping(target = "ornament", source = "interior.ornament")
     //@Mapping(target = "fish.name", ignore = true)
     @Mapping(target = "fish.name", constant = "nameConstant")
     @Mapping(target = "fish.kind", source = "fish.type")
@@ -46,11 +52,29 @@ public interface IConvertMapper {
      */
     ReferenceTarget referenceTargetFromReferenceSource(ReferenceSource referenceSource);
 
+    /**
+     * 集合映射方法
+     *
+     * @param sources
+     * @return
+     */
     List<Target> targetFromSource(List<Source> sources);
 
+    /**
+     * 集合映射格式化数字方法
+     *
+     * @param integers
+     * @return
+     */
     @IterableMapping(numberFormat = "$#.00")
     List<String> stringsFromIntegers(List<Integer> integers);
 
+    /**
+     * 集合映射格式化日期方法
+     *
+     * @param dates
+     * @return
+     */
     @IterableMapping(dateFormat = "yyyy-MM-dd HH:mm:ss")
     List<String> stringsFromDate(List<Date> dates);
 

@@ -23,6 +23,11 @@ public abstract class AbstractMongoConfig {
         return new SimpleMongoDbFactory(new MongoClient(host, port), database);
     }
 
+    /**
+     * 模板获取方法
+     *
+     * @return
+     */
     abstract public MongoTemplate getMongoTemplate();
 
 }

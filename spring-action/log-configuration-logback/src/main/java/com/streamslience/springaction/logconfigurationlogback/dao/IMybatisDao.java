@@ -10,6 +10,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IMybatisDao {
 
+    /**
+     * 根据主键查询
+     *
+     * @param id
+     * @return
+     */
     MyabtisEntity selectById(String id);
 
 }

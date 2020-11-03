@@ -2,6 +2,10 @@ package com.streamslience.mapstruct.officialtutorial.datatypeconversions.qualifi
 
 import lombok.Data;
 
+/**
+ * @author StreamSlience
+ * @date 2020-06-28 15:46
+ */
 @Data
 public class GermanSecond {
 

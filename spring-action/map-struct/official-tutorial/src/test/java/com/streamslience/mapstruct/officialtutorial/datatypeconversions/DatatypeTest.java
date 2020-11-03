@@ -3,7 +3,7 @@ package com.streamslience.mapstruct.officialtutorial.datatypeconversions;
 import com.streamslience.mapstruct.officialtutorial.OfficialTutorialApplication;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.domain.*;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper.ICarMapper;
-import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper.FishTankMapperWithVolume;
+import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper.AbstractFishTankMapperWithVolume;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.command.mapper.IConvertMapper;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.qualifiers.first.domain.GermanFirst;
 import com.streamslience.mapstruct.officialtutorial.datatypeconversions.qualifiers.first.domain.OriginalFirst;
@@ -37,7 +37,7 @@ public class DatatypeTest {
     private ICarMapper ICarMapper;
 
     @Autowired
-    private FishTankMapperWithVolume fishTankMapperWithVolume;
+    private AbstractFishTankMapperWithVolume abstractFishTankMapperWithVolume;
 
     @Autowired
     private MovieFirstMapper movieFirstMapper;
@@ -96,7 +96,7 @@ public class DatatypeTest {
     public void convert5() {
         FishTankWithVolumeDto fishTankWithVolumeDto = new FishTankWithVolumeDto();
         System.err.println(fishTankWithVolumeDto);
-        fishTankWithVolumeDto = fishTankMapperWithVolume.map(new FishTank());
+        fishTankWithVolumeDto = abstractFishTankMapperWithVolume.map(new FishTank());
         System.err.println(fishTankWithVolumeDto);
     }
 
