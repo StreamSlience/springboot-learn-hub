@@ -3,6 +3,7 @@ package com.streamslience.easyexcel.officialtutorial;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.util.FileUtils;
+import com.alibaba.excel.write.merge.LoopMergeStrategy;
 import com.alibaba.excel.write.metadata.WriteSheet;
 import com.streamslience.easyexcel.officialtutorial.write.*;
 import lombok.extern.slf4j.Slf4j;
@@ -41,10 +42,18 @@ public class WriteTest {
 
     private static final String WIDTH_HEIGHT_NAME = FILE_NAME + "widthHeight";
 
+    private static final String MERGE_NAME = FILE_NAME + "merge";
+
+    private static final String DYNAMIC_HEAD_NAME = FILE_NAME + "dynamicHead";
+
     private static final List<WriteBO> WRITE_BOS = new ArrayList<WriteBO>() {{
         add(new WriteBO("哈哈哈", new Date(), 1D));
         add(new WriteBO("嘿嘿嘿", new Date(), 2D));
         add(new WriteBO("嘻嘻嘻", new Date(), 3D));
+        add(new WriteBO("咻咻咻", new Date(), 4D));
+        add(new WriteBO("哔哔哔", new Date(), 5D));
+        add(new WriteBO("滴滴滴", new Date(), 6D));
+        add(new WriteBO("哒哒哒", new Date(), 7D));
     }};
 
     /**
@@ -142,10 +151,75 @@ public class WriteTest {
         }
     }
 
+    /**
+     * 导出数据 设定单元格大小
+     */
     @Test
     public void writeWidthAndHeight() {
         EasyExcel.write(WIDTH_HEIGHT_NAME + System.currentTimeMillis() + ".xls", WidthAndHeightBO.class).sheet("设定行高和列宽").doWrite(WRITE_BOS);
+    }
 
+    /**
+     * 合并单元格
+     */
+    @Test
+    public void writeMerge() {
+        String fileName = MERGE_NAME + System.currentTimeMillis() + ".xls";
+        // 每隔2行会合并 把eachColumn 设置成 3 也就是我们数据的长度，所以就第一列会合并。当然其他合并策略也可以自己写
+        LoopMergeStrategy loopMergeStrategy = new LoopMergeStrategy(2, 0);
+        // 这里 需要指定写用哪个class去写，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
+        EasyExcel.write(fileName, Write2BO.class).registerWriteHandler(loopMergeStrategy).sheet("合并单元格")
+                .doWrite(WRITE_BOS);
+    }
+
+    /**
+     * 动态表头
+     */
+    @Test
+    public void writeDynamicHead() {
+        List<List<String>> list = new ArrayList<>();
+        List<String> head0 = new ArrayList<>();
+        head0.add("字符串" + System.currentTimeMillis());
+        List<String> head1 = new ArrayList<>();
+        head1.add("数字" + System.currentTimeMillis());
+        List<String> head2 = new ArrayList<>();
+        head2.add("日期" + System.currentTimeMillis());
+        list.add(head0);
+        list.add(head1);
+        list.add(head2);
+
+        EasyExcel.write(DYNAMIC_HEAD_NAME + System.currentTimeMillis() + ".xls")
+                // 这里放入动态头
+                .head(list)
+                .sheet("动态创建表头一")
+                .sheetNo(0)
+                // 当然这里数据也可以用 List<List<String>> 去传入
+                .doWrite(WRITE_BOS);
+
+        EasyExcel.write(DYNAMIC_HEAD_NAME + System.currentTimeMillis() + ".xls")
+                //不需要表头
+                .needHead(false)
+                .head(list)
+                .sheet("动态创建表头二")
+                .sheetNo(0)
+                .doWrite(WRITE_BOS);
+
+        EasyExcel.write(DYNAMIC_HEAD_NAME + System.currentTimeMillis() + ".xls")
+                .head(Write1BO.class)
+                //.head(list)
+                .sheet("动态创建表头三")
+                .sheetNo(0)
+                .doWrite(WRITE_BOS);
+
+        head0.add("咚咚咚");
+        head1.add("12");
+        head2.add("2020-10-10 10:10:10");
+
+        EasyExcel.write(DYNAMIC_HEAD_NAME + System.currentTimeMillis() + ".xls")
+                .head(list)
+                .sheet("动态创建表头四")
+                .sheetNo(0)
+                .doWrite(new ArrayList());
     }
 
 }
