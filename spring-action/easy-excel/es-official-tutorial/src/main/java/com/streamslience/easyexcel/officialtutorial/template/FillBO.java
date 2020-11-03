@@ -15,4 +15,11 @@ public class FillBO {
 
     private Double number;
 
+    public FillBO() {
+    }
+
+    public FillBO(String string, Double number) {
+        this.string = string;
+        this.number = number;
+    }
 }
