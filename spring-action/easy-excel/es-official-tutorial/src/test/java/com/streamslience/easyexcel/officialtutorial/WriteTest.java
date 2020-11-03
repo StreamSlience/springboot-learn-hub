@@ -81,7 +81,7 @@ public class WriteTest {
     }
 
     /**
-     * 写入Exce 指定列 名称 和 顺序
+     * 写入Excel 指定列 名称 和 顺序
      */
     @Test
     public void writeSpecifyNameAndIndex() {
@@ -130,7 +130,7 @@ public class WriteTest {
     }
 
     /**
-     * 导出入图像
+     * 导出图像
      */
     @Test
     public void writeImages() throws IOException {

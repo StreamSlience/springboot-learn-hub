@@ -31,7 +31,8 @@ public class FellFastController {
         response.setContentType("application/vnd.ms-excel");
         response.setCharacterEncoding("utf-8");
         response.setHeader("Content-disposition", "attachment;filename=demo.xlsx");
-        EasyExcel.write(response.getOutputStream(), FeelFastBO.class).sheet("模板").doWrite(new ArrayList());
+        EasyExcel.write(response.getOutputStream(), FeelFastBO.class).sheet("模板")
+                .doWrite(new ArrayList());
 
     }
 
@@ -43,7 +44,8 @@ public class FellFastController {
      */
     @PostMapping(value = "upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String upload(@RequestPart("file") MultipartFile file) throws IOException {
-        EasyExcel.read(file.getInputStream(), FeelFastBO.class, new FeelFastListener()).sheet().doRead();
+        EasyExcel.read(file.getInputStream(), FeelFastBO.class, new FeelFastListener())
+                .sheet().doRead();
         return "success";
     }
 

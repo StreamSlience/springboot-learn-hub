@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- * <h2>导入图像</h2>
+ * <h2>导出图像</h2>
  *
  * @author StreamSlience
  * @date 2020-11-02 21:05
