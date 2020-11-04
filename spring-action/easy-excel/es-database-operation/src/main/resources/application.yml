@@ -1,0 +1,51 @@
+server:
+  port: 8771
+
+spring:
+  jpa:
+    database: postgresql
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 10
+      auto-commit: true
+      idle-timeout: 12000
+      max-lifetime: 30000
+      connection-timeout: 10000
+      connection-test-query: SELECT 1
+      read-only: false
+      pool-name: hikari
+    url: "jdbc:postgresql://localhost:5432/postgres?currentSchema=public"
+    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    username: "postgres"
+    password: "123456"
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: id_worker_str #主键生成策略
+      #逻辑删除
+      logic-delete-value: 1 #默认 1
+      logic-not-delete-value: 0 #默认 0
+      table-prefix: xx_
+      # table-underline: true
+
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.engine.QueryParameters: debug
+    org.hibernate.engine.query.HQLQueryPlan: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: debug
+
