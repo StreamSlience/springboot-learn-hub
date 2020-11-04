@@ -24,18 +24,18 @@ public class BaseEntity {
     @TableId
     private Integer id;
 
-    @Column
+    @Column(columnDefinition = "TIMESTAMP NOT NULL DEFAULT NOW()")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updatedTime;
 
-    @Column
+    @Column(columnDefinition = "TIMESTAMP NOT NULL DEFAULT NOW()")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createdTime;
 
-    @Column
+    @Column(nullable = false,columnDefinition = "INTEGER NOT NULL DEFAULT 0")
     private Integer tenantId;
 
-    @Column
+    @Column(columnDefinition = "INTEGER DEFAULT 0")
     @TableLogic
     private Integer isDeleted;
 
