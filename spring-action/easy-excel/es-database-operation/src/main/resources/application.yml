@@ -34,12 +34,10 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
-      id-type: id_worker_str #主键生成策略
-      #逻辑删除
+      id-type: id_worker_str
       logic-delete-value: 1 #默认 1
       logic-not-delete-value: 0 #默认 0
-      table-prefix: xx_
-      # table-underline: true
+      table-prefix:
 
 
 logging:

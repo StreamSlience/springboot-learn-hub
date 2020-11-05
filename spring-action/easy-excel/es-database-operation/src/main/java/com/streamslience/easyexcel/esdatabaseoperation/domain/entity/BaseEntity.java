@@ -22,7 +22,8 @@ public class BaseEntity {
 
     @Id
     @TableId
-    private Integer id;
+    @Column(columnDefinition = "VARCHAR(50) NOT NULL")
+    private String id;
 
     @Column(columnDefinition = "TIMESTAMP NOT NULL DEFAULT NOW()")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -32,8 +33,8 @@ public class BaseEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createdTime;
 
-    @Column(nullable = false,columnDefinition = "INTEGER NOT NULL DEFAULT 0")
-    private Integer tenantId;
+    @Column(nullable = false,columnDefinition = "VARCHAR(50) NOT NULL DEFAULT ''")
+    private String tenantId;
 
     @Column(columnDefinition = "INTEGER DEFAULT 0")
     @TableLogic

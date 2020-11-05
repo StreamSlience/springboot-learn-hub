@@ -1,6 +1,5 @@
 package com.streamslience.easyexcel.esdatabaseoperation.domain.response;
 
-import java.util.Date;
 
 /**
  * @param <R>
@@ -16,10 +15,10 @@ public class Result<R> {
     }
 
     public Result(boolean success, R data, StatusEnum statusEnum) {
-        this(success, statusEnum.getErrorCode(), statusEnum.getErrorMsg(), data);
+        this(success, data, statusEnum.getErrorCode(), statusEnum.getErrorMsg());
     }
 
-    public Result(boolean success, int code, String msg, R data) {
+    public Result(boolean success, R data, int code, String msg) {
         this.success = success;
         this.code = code;
         this.msg = msg;
@@ -27,30 +26,19 @@ public class Result<R> {
     }
 
     public static <R> Result<R> ofSuccess(R data) {
-        return new Result<>(true,data,StatusEnum.SUCCESS);
+        return new Result<>(true, data, StatusEnum.SUCCESS);
     }
 
     public static <R> Result<R> ofSuccessMsg(String msg) {
-        return new Result<R>()
-                .setSuccess(true)
-                .setCode(StatusEnum.SUCCESS.getErrorCode())
-                .setMsg(msg);
+        return new Result<R>(true, null, StatusEnum.SUCCESS.getErrorCode(), msg);
     }
 
     public static <R> Result<R> ofFail(int code, String msg) {
-        Result<R> result = new Result<>();
-        result.setSuccess(false);
-        result.setCode(StatusEnum.FAIL.getErrorCode());
-        result.setMsg(msg);
-        return result;
+        return new Result<R>(false, null, StatusEnum.FAIL.getErrorCode(), msg);
     }
 
     public static <R> Result<R> ofThrowable(int code, Throwable throwable) {
-        Result<R> result = new Result<>();
-        result.setSuccess(false);
-        result.setCode(code);
-        result.setMsg(throwable.getClass().getName() + ", " + throwable.getMessage());
-        return result;
+        return new Result<R>(false, null, code, throwable.getClass().getName() + ", " + throwable.getMessage());
     }
 
     public boolean isSuccess() {
